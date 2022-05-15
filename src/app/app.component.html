@@ -1,0 +1,4 @@
+<app-tool-bar></app-tool-bar>
+<app-home [hidden]="router.url != '/'"></app-home>
+<app-home-be-mind [hidden]="isHideBeMind"></app-home-be-mind>
+<app-home-need-mind *ngIf="router.url == '/needMind'"></app-home-need-mind>

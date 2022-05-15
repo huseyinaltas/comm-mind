@@ -1,0 +1,19 @@
+<div [formGroup]="homeBeMind.profileForm">
+  <div formGroupName="name">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="firstName" placeholder="name" required />
+    </mat-form-field>
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Lastname</mat-label>
+        <input
+          matInput
+          formControlName="lastName"
+          placeholder="lastname"
+          required
+        />
+      </mat-form-field>
+    </p>
+  </div>
+</div>

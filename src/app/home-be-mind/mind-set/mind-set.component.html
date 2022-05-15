@@ -1,0 +1,145 @@
+<h2 align="center">
+  Hey
+  <strong>{{ homeBeMind.profileForm.value.name.firstName }}</strong
+  >, let's find out how you can help
+</h2>
+<h4 align="center">Please select at least 3 and max 10 mind sets</h4>
+<div [formGroup]="homeBeMind.profileForm">
+  <div
+    style="
+      margin-bottom: 20px;
+      width: 100%;
+      bottom: 12px;
+      border: solid 1px rgb(196, 194, 194);
+      padding-top: 2px;
+      padding-bottom: 2px;
+    "
+  >
+    <mat-button-toggle-group
+      #group1="matButtonToggleGroup"
+      name="mind sets"
+      aria-label="Mind Sets"
+      multiple
+      (change)="
+        homeBeMind.allMindSets =
+          group1.value +
+          ',' +
+          group2.value +
+          ',' +
+          group3.value +
+          ',' +
+          group4.value +
+          ',' +
+          group5.value
+      "
+    >
+      <mat-button-toggle value="sport">Sport</mat-button-toggle>
+      <mat-button-toggle value="politics">Politics</mat-button-toggle>
+      <mat-button-toggle value="movie">Movie</mat-button-toggle>
+      <mat-button-toggle value="science">Science</mat-button-toggle>
+    </mat-button-toggle-group>
+    <p></p>
+    <mat-button-toggle-group
+      #group2="matButtonToggleGroup"
+      name="mind sets"
+      aria-label="Mind Sets"
+      multiple
+      (change)="
+        homeBeMind.allMindSets =
+          group1.value +
+          ',' +
+          group2.value +
+          ',' +
+          group3.value +
+          ',' +
+          group4.value +
+          ',' +
+          group5.value
+      "
+    >
+      <mat-button-toggle value="education">Education</mat-button-toggle>
+      <mat-button-toggle value="investment">Investment</mat-button-toggle>
+      <mat-button-toggle value="vacation">Vacation</mat-button-toggle>
+      <mat-button-toggle value="marriage">Marriage</mat-button-toggle>
+    </mat-button-toggle-group>
+    <p></p>
+    <mat-button-toggle-group
+      #group3="matButtonToggleGroup"
+      name="mind sets"
+      aria-label="Mind Sets"
+      multiple
+      (change)="
+        homeBeMind.allMindSets =
+          group1.value +
+          ',' +
+          group2.value +
+          ',' +
+          group3.value +
+          ',' +
+          group4.value +
+          ',' +
+          group5.value
+      "
+    >
+      <mat-button-toggle value="car">Car</mat-button-toggle>
+      <mat-button-toggle value="book">Book</mat-button-toggle>
+      <mat-button-toggle value="religion">Religion</mat-button-toggle>
+      <mat-button-toggle value="tvshow">TV Show</mat-button-toggle>
+    </mat-button-toggle-group>
+    <p></p>
+    <mat-button-toggle-group
+      #group4="matButtonToggleGroup"
+      name="mind sets"
+      aria-label="Mind Sets"
+      multiple
+      (change)="
+        homeBeMind.allMindSets =
+          group1.value +
+          ',' +
+          group2.value +
+          ',' +
+          group3.value +
+          ',' +
+          group4.value +
+          ',' +
+          group5.value
+      "
+    >
+      <mat-button-toggle value="house">House</mat-button-toggle>
+      <mat-button-toggle value="shopping">Shopping</mat-button-toggle>
+      <mat-button-toggle value="astronomy">Astronomy</mat-button-toggle>
+      <mat-button-toggle value="exams">Exams</mat-button-toggle>
+    </mat-button-toggle-group>
+    <p></p>
+    <mat-button-toggle-group
+      #group5="matButtonToggleGroup"
+      name="mind sets"
+      aria-label="Mind Sets"
+      multiple
+      (change)="
+        homeBeMind.allMindSets =
+          group1.value +
+          ',' +
+          group2.value +
+          ',' +
+          group3.value +
+          ',' +
+          group4.value +
+          ',' +
+          group5.value
+      "
+    >
+      <mat-button-toggle value="business">Business</mat-button-toggle>
+      <mat-button-toggle value="relationship">Relationship</mat-button-toggle>
+      <mat-button-toggle value="work">Work</mat-button-toggle>
+      <mat-button-toggle value="coins">Coins</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+  <!-- <div formArrayName="mindSets">
+    <div class="example-selected-value">Selected value: {{ group1.value }}</div>
+    <div class="example-selected-value">Selected value: {{ group2.value }}</div>
+    <div class="example-selected-value">Selected value: {{ group3.value }}</div>
+    <div class="example-selected-value">Selected value: {{ group4.value }}</div>
+    <div class="example-selected-value">Selected value: {{ group5.value }}</div>
+  </div> -->
+</div>
