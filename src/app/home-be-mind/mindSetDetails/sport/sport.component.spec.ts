@@ -2,23 +2,23 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ReactiveFormsModule, FormBuilder } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { RouterTestingModule } from "@angular/router/testing";
-import { AppComponent } from "../app.component";
-import { CommonForms } from "../forms/commonForms";
-import { PoliticsForm } from "../forms/politics";
-import { ProfileForm } from "../forms/profile";
-import { HomeBeMindComponent } from "../home-be-mind/home-be-mind.component";
-import { FirstNameComponent } from "../home-be-mind/profile/name/name.component";
+import { AppComponent } from "src/app/app.component";
+import { CommonForms } from "src/app/forms/commonForms";
+import { PoliticsForm } from "src/app/forms/politics";
+import { ProfileForm } from "src/app/forms/profile";
+import { HomeBeMindComponent } from "../../home-be-mind.component";
+import { FirstNameComponent } from "../../profile/name/name.component";
 
-import { HomeComponent } from "./home.component";
+import { SportComponent } from "./sport.component";
 
-describe("HomeBeMindComponent", () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+describe("SportComponent", () => {
+  let component: SportComponent;
+  let fixture: ComponentFixture<SportComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule, ReactiveFormsModule, MatButtonModule],
-      declarations: [HomeComponent, HomeBeMindComponent, FirstNameComponent],
+      declarations: [SportComponent, HomeBeMindComponent, FirstNameComponent],
       providers: [
         FormBuilder,
         AppComponent,
@@ -31,12 +31,12 @@ describe("HomeBeMindComponent", () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(SportComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it("Home componenet should be created", () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

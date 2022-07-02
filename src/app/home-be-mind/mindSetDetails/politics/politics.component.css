@@ -1,0 +1,62 @@
+mat-button-toggle:hover {
+  color: #c2185b;
+}
+
+.mat-button {
+  background-color: #c2185b;
+  color: white;
+}
+.mat-button:disabled {
+  background-color: grey;
+  color: white;
+}
+
+.polticsButtons > .button:not(:last-child) {
+  margin-right: 30px;
+}
+
+::ng-deep.mat-button-toggle-checked {
+  /* border: 1px solid #c2185b;
+  background-color: #eadfe3; */
+  color: #c2185b !important;
+  /* text-transform: uppercase;
+  text-decoration: none; */
+  /* background: #ff007f; */
+  /* padding: 20px; */
+
+  /* font-size: 25px; */
+}
+
+.box {
+  width: 430px;
+  display: block;
+}
+
+.politics {
+  right: 8px;
+}
+::ng-deep.mat-step-header {
+  width: 200px;
+}
+
+::ng-deep .vertHeaderStepper .mat-vertical-stepper-header {
+  left: 30%;
+  pointer-events: none !important;
+}
+::ng-deep .matstepper-vertical-line::before {
+  border-left-width: 0;
+}
+::ng-deep.mat-stepper-horizontal-line {
+  border-top-width: 0px;
+}
+/* ::ng-deep .mat-vertical-stepper-header {
+  pointer-events: none !important;
+} */
+.alert {
+  color: white;
+  background-color: red;
+}
+
+/* .mat-form-field {
+  height: 50px !important;
+} */

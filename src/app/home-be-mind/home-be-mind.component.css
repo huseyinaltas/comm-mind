@@ -24,19 +24,37 @@ label {
   background-color: #3f51b5;
 }
 
-.allInputs {
-  padding-top: 5%;
+.allInputsProfile {
+  position: absolute;
+  /* padding-left: 45%; */
+  left: 57%;
+  top: 220%;
+  transform: translate(-50%, -50%);
+}
+
+.allInputsMindSets {
   position: absolute;
   /* padding-left: 45%; */
   left: 50%;
-  top: 50%;
+  top: 80%;
+  bottom: 120%;
+  transform: translate(-50%, -50%);
+}
+
+.buttonProfilSubmit {
+  position: absolute;
+  width: 12%;
+  /* padding-left: 45%; */
+  left: 67%;
+  top: 266%;
   transform: translate(-50%, -50%);
 }
 
 .below {
   position: absolute;
-  top: 90%;
+  top: 110%;
   margin-top: 8%;
+  overflow: visible;
 }
 ::ng-deep .mat-horizontal-stepper-header {
   pointer-events: none !important;
@@ -56,3 +74,16 @@ label {
   background-color: #c2185b;
   color: white;
 }
+.allInputsProfileSubmit {
+  position: fixed;
+  /* padding-left: 45%; */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* .box {
+  width: 700px;
+  height: 500px;
+  overflow: scroll;
+} */

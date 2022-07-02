@@ -7,20 +7,19 @@ import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
-import { AppComponent } from "../app.component";
-import { CommonForms } from "../forms/commonForms";
-import { PoliticsForm } from "../forms/politics";
-import { ProfileForm } from "../forms/profile";
-import { HomeBeMindComponent } from "../home-be-mind/home-be-mind.component";
-import { AddressComponent } from "../home-be-mind/profile/address/address.component";
-import { FirstNameComponent } from "../home-be-mind/profile/name/name.component";
-import { MindSetComponent } from "../home-be-mind/profile/mind-set/mind-set.component";
+import { AppComponent } from "src/app/app.component";
+import { CommonForms } from "src/app/forms/commonForms";
+import { PoliticsForm } from "src/app/forms/politics";
+import { ProfileForm } from "src/app/forms/profile";
+import { HomeBeMindComponent } from "../../home-be-mind.component";
+import { AddressComponent } from "../address/address.component";
+import { FirstNameComponent } from "../name/name.component";
 
-import { ToolBarComponent } from "./tool-bar.component";
+import { MindSetComponent } from "./mind-set.component";
 
-describe("ToolBarComponent", () => {
-  let component: ToolBarComponent;
-  let fixture: ComponentFixture<ToolBarComponent>;
+describe("MindSetComponent", () => {
+  let component: MindSetComponent;
+  let fixture: ComponentFixture<MindSetComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -39,7 +38,6 @@ describe("ToolBarComponent", () => {
         AddressComponent,
         HomeBeMindComponent,
         FirstNameComponent,
-        ToolBarComponent,
       ],
       providers: [
         FormBuilder,
@@ -52,12 +50,12 @@ describe("ToolBarComponent", () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ToolBarComponent);
+    fixture = TestBed.createComponent(MindSetComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it("Tool Bar componenet should be created", () => {
+  it("Mind Set componenet should be created", () => {
     expect(component).toBeTruthy();
   });
 });

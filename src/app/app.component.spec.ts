@@ -1,35 +1,33 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
+import { TestBed } from "@angular/core/testing";
+import { ReactiveFormsModule, FormBuilder } from "@angular/forms";
+import { MatButtonModule } from "@angular/material/button";
+import { RouterTestingModule } from "@angular/router/testing";
+import { AppComponent } from "./app.component";
+import { CommonForms } from "./forms/commonForms";
+import { PoliticsForm } from "./forms/politics";
+import { ProfileForm } from "./forms/profile";
+import { HomeBeMindComponent } from "./home-be-mind/home-be-mind.component";
+import { FirstNameComponent } from "./home-be-mind/profile/name/name.component";
 
-describe('AppComponent', () => {
+describe("AppComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
+      imports: [RouterTestingModule, ReactiveFormsModule, MatButtonModule],
+      declarations: [HomeBeMindComponent, FirstNameComponent],
+      providers: [
+        FormBuilder,
+        AppComponent,
+        PoliticsForm,
+        ProfileForm,
+        CommonForms,
+        FirstNameComponent,
       ],
     }).compileComponents();
   });
 
-  it('should create the app', () => {
+  it("should create the app", () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'comm-mind'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('comm-mind');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('comm-mind app is running!');
   });
 });

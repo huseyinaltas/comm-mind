@@ -1,0 +1,47 @@
+<div [formGroup]="appComponent.profileForm">
+  <div formGroupName="name" style="margin-top: -120px">
+    <h2 class="headerOfAllSteps"><strong>Let's get started!</strong></h2>
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input
+        id="firstName"
+        type="text"
+        matInput
+        formControlName="firstName"
+        placeholder="name"
+        name="first"
+        #first
+      />
+    </mat-form-field>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Lastname</mat-label>
+        <input
+          id="lastName"
+          type="text"
+          matInput
+          formControlName="lastName"
+          placeholder="lastname"
+          required
+          name="last"
+          #last
+        />
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input
+          id="email"
+          type="text"
+          matInput
+          formControlName="email"
+          placeholder="email"
+          name="email"
+          #email
+          required
+        />
+      </mat-form-field>
+    </p>
+  </div>
+</div>

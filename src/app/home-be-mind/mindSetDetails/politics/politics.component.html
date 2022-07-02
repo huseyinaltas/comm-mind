@@ -1,0 +1,484 @@
+<div [formGroup]="appComponent.politicsForm" class="box">
+  <h2 align="center" class="headerOfAllSteps">
+    <strong>Let's specify your Politics details!</strong>
+  </h2>
+  <mat-vertical-stepper
+    class="vertHeaderStepper"
+    #stepperPolitics
+    selectedIndex="text"
+  >
+    <mat-step>
+      <ng-template class="vertHeaderStepper" matStepLabel
+        >Politcal View</ng-template
+      >
+      <div align="center" class="politics">
+        <h2 align="center">
+          Hey
+          <strong>{{ appComponent.profileForm.value.name.firstName }}</strong
+          >, where do you lean towards?
+        </h2>
+        <h4 align="center">Please select a polictial view</h4>
+        <mat-button-toggle-group
+          formControlName="lean"
+          #groupPolitic="matButtonToggleGroup"
+        >
+          <mat-button-toggle
+            *ngFor="let politic of politicsViews | keyvalue"
+            value="{{ politic.value.name }}"
+          >
+            {{ politic.value.name }}
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+        <p></p>
+        <button
+          mat-button
+          matStepperNext
+          matStepperNext
+          [disabled]="!appComponent.politicsForm.getRawValue().lean"
+        >
+          <mat-icon>keyboard_arrow_down</mat-icon>Next
+        </button>
+      </div>
+    </mat-step>
+
+    <mat-step *ngIf="appComponent.politicsForm.getRawValue().lean">
+      <ng-template matStepLabel>Politcal View Detail</ng-template>
+      <div align="center" class="politics">
+        <h2 align="center">
+          Okay nice
+          <strong>{{ appComponent.profileForm.value.name.firstName }}</strong
+          >, where do you stand at "{{
+            appComponent.politicsForm.getRawValue().lean
+          }}" view?
+        </h2>
+        <h4 align="center">Please select the view is apply for you mostly</h4>
+        <mat-button-toggle-group formControlName="leanDetail">
+          <mat-button-toggle
+            *ngFor="
+              let politic of appComponent.politicsForm.getRawValue().lean ==
+              'Left'
+                ? (politicsViews.a.details | keyvalue)
+                : appComponent.politicsForm.getRawValue().lean == 'Center'
+                ? (politicsViews.b.details | keyvalue)
+                : appComponent.politicsForm.getRawValue().lean == 'Right'
+                ? (politicsViews.c.details | keyvalue)
+                : undefined
+            "
+            value="{{ politic.value }}"
+            >{{ politic.value }}</mat-button-toggle
+          >
+        </mat-button-toggle-group>
+        <div class="polticsButtons">
+          <p></p>
+          <button class="button" mat-button matStepperPrevious>
+            <mat-icon>keyboard_arrow_up</mat-icon>Back
+          </button>
+          <button
+            [disabled]="!appComponent.politicsForm.getRawValue().leanDetail"
+            class="button"
+            mat-button
+            matStepperNext
+          >
+            <mat-icon>keyboard_arrow_down</mat-icon>Next
+          </button>
+        </div>
+      </div>
+    </mat-step>
+
+    <mat-step *ngIf="appComponent.politicsForm.getRawValue().leanDetail">
+      <ng-template matStepLabel>Political Membership</ng-template>
+      <div align="center" class="politics">
+        <h2 align="center">Is there any party you are the member?</h2>
+        <h4 align="center">Please select a party if you are member.</h4>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="memeberShip">
+            <mat-option
+              *ngFor="let party of this.politicsParties"
+              [value]="party"
+            >
+              {{ party }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="polticsButtons">
+          <p></p>
+          <button class="button" mat-button matStepperPrevious>
+            <mat-icon>keyboard_arrow_up</mat-icon>Back
+          </button>
+          <button
+            [disabled]="!appComponent.politicsForm.getRawValue().memeberShip"
+            class="button"
+            mat-button
+            matStepperNext
+          >
+            <mat-icon>keyboard_arrow_down</mat-icon>Next
+          </button>
+        </div>
+      </div>
+    </mat-step>
+
+    <mat-step *ngIf="appComponent.politicsForm.getRawValue().memeberShip">
+      <ng-template matStepLabel>Education Degree</ng-template>
+      <div align="center" class="politics" formGroupName="education">
+        <h2 align="center">How about your eduction?</h2>
+        <h4 align="center">
+          Please select your higher education you have completed.
+        </h4>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="degree">
+            <mat-option
+              *ngFor="
+                let level of this.educationLevels;
+                index as i;
+                first as isFirst
+              "
+              [value]="level"
+            >
+              {{ level }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="polticsButtons">
+          <p></p>
+          <button class="button" mat-button matStepperPrevious>
+            <mat-icon>keyboard_arrow_up</mat-icon>Back
+          </button>
+          <button
+            [disabled]="
+              !appComponent.politicsForm.getRawValue().education.degree
+            "
+            class="button"
+            mat-button
+            matStepperNext
+          >
+            <mat-icon>keyboard_arrow_down</mat-icon>Next
+          </button>
+        </div>
+      </div>
+    </mat-step>
+
+    <mat-step *ngIf="appComponent.politicsForm.getRawValue().education.degree">
+      <ng-template matStepLabel>Education Major</ng-template>
+      <div align="center" class="politics" formGroupName="education">
+        <h2 align="center">What major did you study?</h2>
+        <h4 align="center">Please select your degree major.</h4>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="major">
+            <mat-option
+              *ngFor="
+                let level of this.educationMajors;
+                index as i;
+                first as isFirst
+              "
+              [value]="level"
+            >
+              {{ level }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br />
+        <div
+          *ngIf="
+            !(
+              appComponent.politicsForm.getRawValue().education.major != 'Other'
+            )
+          "
+        >
+          <h4 align="center">Please enter your major</h4>
+          <mat-form-field appearance="outline">
+            <input matInput type="text" formControlName="otherMajor" />
+          </mat-form-field>
+        </div>
+        <div class="polticsButtons">
+          <p></p>
+          <button class="button" mat-button matStepperPrevious>
+            <mat-icon>keyboard_arrow_up</mat-icon>Back
+          </button>
+          <button
+            [disabled]="
+              appComponent.politicsForm.getRawValue().education.major == 'Other'
+                ? !appComponent.politicsForm.getRawValue().education.otherMajor
+                : !appComponent.politicsForm.getRawValue().education.major
+            "
+            class="button"
+            mat-button
+            matStepperNext
+          >
+            <mat-icon>keyboard_arrow_down</mat-icon>Next
+          </button>
+        </div>
+      </div>
+    </mat-step>
+
+    <mat-step
+      *ngIf="
+        appComponent.politicsForm.getRawValue().education.major == 'Other'
+          ? appComponent.politicsForm.getRawValue().education.otherMajor
+          : appComponent.politicsForm.getRawValue().education.major
+      "
+    >
+      <!-- <mat-step> -->
+      <ng-template class="vertHeaderStepper" matStepLabel
+        >Work Experience</ng-template
+      >
+      <div align="center" class="politics">
+        <h2 align="center">
+          Do you have any work experience so far related to
+          <strong>{{ appComponent.politicsForm.value.education.major }}</strong>
+          major currently?
+        </h2>
+        <h4 align="center">
+          We might contact to your employers for employment verification.
+        </h4>
+        <mat-button-toggle-group
+          formControlName="anyWorkExperience"
+          style="width: 120px"
+        >
+          <mat-button-toggle style="width: 60px" [value]="true">
+            Yes
+          </mat-button-toggle>
+          <mat-button-toggle style="width: 60px" [value]="false">
+            No
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+        <div class="polticsButtons">
+          <p></p>
+          <button class="button" mat-button matStepperPrevious>
+            <mat-icon>keyboard_arrow_up</mat-icon>Back
+          </button>
+          <button
+            mat-button
+            matStepperNext
+            [disabled]="
+              appComponent.politicsForm.getRawValue().anyWorkExperience == null
+            "
+            (click)="
+              resetWorkHistory(
+                appComponent.politicsForm.getRawValue().anyWorkExperience
+              )
+            "
+          >
+            <mat-icon>keyboard_arrow_down</mat-icon>Next
+          </button>
+        </div>
+      </div>
+    </mat-step>
+
+    <mat-step
+      *ngIf="appComponent.politicsForm.getRawValue().anyWorkExperience == true"
+    >
+      <ng-template class="vertHeaderStepper" matStepLabel
+        >Work History</ng-template
+      >
+      <div align="center" class="politics">
+        <h2 align="center">
+          Let's see how much you are experienced with your work history in
+          <strong>{{ appComponent.politicsForm.value.education.major }}</strong>
+          major currently?
+        </h2>
+        <h4 align="center">
+          We might contact to your employers for employment verification.
+        </h4>
+        <div formGroupName="workExperienceHistory">
+          <div formArrayName="details">
+            <div
+              *ngFor="
+                let child of appComponent.politicsFormFile.details.controls;
+                let i = index
+              "
+            >
+              Work History - {{ i + 1 }}
+              <div
+                *ngIf="i > 0"
+                style="cursor: pointer"
+                (click)="removeWorkHistory(i)"
+              >
+                <mat-icon style="padding-left: 70%"
+                  >delete forever icon</mat-icon
+                >
+              </div>
+              <div [formGroupName]="i">
+                <mat-form-field appearance="outline">
+                  <mat-label>Employer</mat-label>
+                  <input
+                    matInput
+                    id="employer{{ i + 1 }}"
+                    type="text"
+                    formControlName="employer"
+                  />
+                </mat-form-field>
+                <br />
+                <mat-form-field appearance="outline">
+                  <mat-label>Title: </mat-label>
+                  <input
+                    matInput
+                    id="title{{ i + 1 }}"
+                    type="text"
+                    formControlName="title"
+                  />
+                </mat-form-field>
+                <br />
+                <mat-form-field appearance="outline">
+                  <mat-label>Start date</mat-label>
+                  <input
+                    matInput
+                    placeholder="MM/DD/YYYY"
+                    [matDatepicker]="picker1"
+                    id="fromDate{{ i + 1 }}"
+                    type="text"
+                    formControlName="fromDate"
+                    (ngModelChange)="compareTwoDates(i)"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker1"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+                <br />
+                <div *ngIf="!child.get('isCurrent')?.value">
+                  <mat-form-field appearance="outline">
+                    <mat-label>End date</mat-label>
+                    <input
+                      matInput
+                      placeholder="MM/DD/YYYY"
+                      [matDatepicker]="picker2"
+                      id="toDate{{ i + 1 }}"
+                      type="text"
+                      formControlName="toDate"
+                      (ngModelChange)="compareTwoDates(i)"
+                    />
+                    <mat-datepicker-toggle
+                      matSuffix
+                      [for]="picker2"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker
+                      inputmode="YYYY-MM-DD"
+                      #picker2
+                    ></mat-datepicker>
+                  </mat-form-field>
+                  <div
+                    *ngIf="
+                      error.isError &&
+                      i ==
+                        appComponent.politicsFormFile.details.controls.length -
+                          1
+                    "
+                    class="alert"
+                  >
+                    {{ error.errorMessage }}
+                  </div>
+                  <p></p>
+                </div>
+                <div>
+                  Is it your current work?
+                  <input
+                    id="isCurrent{{ i }}"
+                    type="checkbox"
+                    placeholder="MM/DD/YYYY"
+                    (change)="
+                      child
+                        .get('isCurrent')
+                        ?.setValue(!child.get('isCurrent')?.value)
+                    "
+                    (click)="
+                      child.get('isCurrent')?.value
+                        ? child.get('toDate')?.setValue('')
+                        : child.get('toDate')?.setValue('current')
+                    "
+                  />
+                  Yes
+                </div>
+                <hr *ngIf="makeLine" />
+                <button
+                  *ngIf="
+                    i ==
+                    appComponent.politicsFormFile.details.controls.length - 1
+                  "
+                  (click)="addWorkHistory(false)"
+                  [disabled]="!(isWorkHistoryValid() && !error.isError)"
+                >
+                  Add Another work
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          *ngFor="
+            let child of appComponent.politicsFormFile.details.controls;
+            let i = index
+          "
+          class="polticsButtons"
+        >
+          <p></p>
+          <button
+            *ngIf="
+              i == appComponent.politicsFormFile.details.controls.length - 1
+            "
+            class="button"
+            mat-button
+            matStepperPrevious
+          >
+            <mat-icon>keyboard_arrow_up</mat-icon>Back
+          </button>
+          <button
+            *ngIf="
+              i == appComponent.politicsFormFile.details.controls.length - 1
+            "
+            mat-button
+            matStepperNext
+            [disabled]="!(isWorkHistoryValid() && !error.isError)"
+          >
+            <mat-icon>keyboard_arrow_down</mat-icon>Next
+          </button>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step
+      *ngIf="
+        (isWorkHistoryValid() && !error.isError) ||
+        appComponent.politicsForm.getRawValue().anyWorkExperience == false
+      "
+    >
+      <ng-template matStepLabel>Submit</ng-template>
+      <div align="center">
+        <h2 align="center">
+          Great
+          <strong>{{ appComponent.profileForm.value.name.firstName }}</strong
+          >, your politics are all set!
+        </h2>
+        <h4 align="center">Do you want to start over all politics?</h4>
+        <div class="polticsButtons">
+          <button
+            class="button"
+            mat-button
+            (click)="reset()"
+            (click)="stepperPolitics.reset()"
+          >
+            Start Over
+          </button>
+          <button
+            class="button"
+            mat-button
+            matStepperPrevious
+            (click)="addWorkHistory(true)"
+          >
+            <mat-icon>keyboard_arrow_up</mat-icon>Back
+          </button>
+        </div>
+        <div class="polticsButtons">
+          <br />
+          <button
+            class="button"
+            (click)="homeBeMind.nextMindDetails()"
+            mat-button
+            matStepperNext
+          >
+            Submit Politics
+          </button>
+        </div>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+</div>

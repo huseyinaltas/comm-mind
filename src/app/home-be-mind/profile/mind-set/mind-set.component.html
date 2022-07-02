@@ -1,0 +1,183 @@
+<h2 align="center" class="headerOfAllSteps">
+  Great
+  <strong>{{ appComponent.profileForm.value.name.firstName }}</strong
+  >, let's find out how you can help
+</h2>
+<h4 align="center">Please select at least 3 and max 10 mind sets</h4>
+<div [formGroup]="appComponent.profileForm">
+  <div
+    style="
+      margin-bottom: 20px;
+      width: 100%;
+      bottom: 12px;
+      border: solid 1px rgb(196, 194, 194);
+      padding-top: 2px;
+      padding-bottom: 2px;
+    "
+  >
+    <mat-button-toggle-group
+      class="mindsetButtonsGroup"
+      #group1="matButtonToggleGroup"
+      name="mind sets"
+      aria-label="Mind Sets"
+      multiple
+      (change)="
+        homeBeMind.allMindSets =
+          group1.value +
+          ',' +
+          group2.value +
+          ',' +
+          group3.value +
+          ',' +
+          group4.value +
+          ',' +
+          group5.value
+      "
+    >
+      <mat-button-toggle class="mindsetButtons" value="Sport"
+        >Sport</mat-button-toggle
+      >
+      <mat-button-toggle class="mindsetButtons" value="Politics"
+        >Politics</mat-button-toggle
+      >
+      <mat-button-toggle class="mindsetButtons" value="Movie"
+        >Movie</mat-button-toggle
+      >
+      <mat-button-toggle class="mindsetButtons" value="Science"
+        >Science</mat-button-toggle
+      >
+    </mat-button-toggle-group>
+    <p></p>
+    <mat-button-toggle-group
+      class="mindsetButtonsGroup"
+      #group2="matButtonToggleGroup"
+      name="mind sets"
+      aria-label="Mind Sets"
+      multiple
+      (change)="
+        homeBeMind.allMindSets =
+          group1.value +
+          ',' +
+          group2.value +
+          ',' +
+          group3.value +
+          ',' +
+          group4.value +
+          ',' +
+          group5.value
+      "
+    >
+      <mat-button-toggle class="mindsetButtons" value="Education"
+        >Education</mat-button-toggle
+      >
+      <mat-button-toggle class="mindsetButtons" value="Investment"
+        >Investment</mat-button-toggle
+      >
+      <mat-button-toggle class="mindsetButtons" value="Vacation"
+        >Vacation</mat-button-toggle
+      >
+      <mat-button-toggle class="mindsetButtons" value="Marriage"
+        >Marriage</mat-button-toggle
+      >
+    </mat-button-toggle-group>
+    <p></p>
+    <mat-button-toggle-group
+      class="mindsetButtonsGroup"
+      #group3="matButtonToggleGroup"
+      name="mind sets"
+      aria-label="Mind Sets"
+      multiple
+      (change)="
+        homeBeMind.allMindSets =
+          group1.value +
+          ',' +
+          group2.value +
+          ',' +
+          group3.value +
+          ',' +
+          group4.value +
+          ',' +
+          group5.value
+      "
+    >
+      <mat-button-toggle class="mindsetButtons" value="Car"
+        >Car</mat-button-toggle
+      >
+      <mat-button-toggle class="mindsetButtons" value="Book"
+        >Book</mat-button-toggle
+      >
+      <mat-button-toggle class="mindsetButtons" value="Religion"
+        >Religion</mat-button-toggle
+      >
+      <mat-button-toggle class="mindsetButtons" value="TV Show"
+        >TV Show</mat-button-toggle
+      >
+    </mat-button-toggle-group>
+    <p></p>
+    <mat-button-toggle-group
+      class="mindsetButtonsGroup"
+      #group4="matButtonToggleGroup"
+      name="mind sets"
+      aria-label="Mind Sets"
+      multiple
+      (change)="
+        homeBeMind.allMindSets =
+          group1.value +
+          ',' +
+          group2.value +
+          ',' +
+          group3.value +
+          ',' +
+          group4.value +
+          ',' +
+          group5.value
+      "
+    >
+      <mat-button-toggle class="mindsetButtons" value="House"
+        >House</mat-button-toggle
+      >
+      <mat-button-toggle class="mindsetButtons" value="Shopping"
+        >Shopping</mat-button-toggle
+      >
+      <mat-button-toggle class="mindsetButtons" value="Astronomy"
+        >Astronomy</mat-button-toggle
+      >
+      <mat-button-toggle class="mindsetButtons" value="Exams"
+        >Exams</mat-button-toggle
+      >
+    </mat-button-toggle-group>
+    <p></p>
+    <mat-button-toggle-group
+      class="mindsetButtonsGroup"
+      #group5="matButtonToggleGroup"
+      name="mind sets"
+      aria-label="Mind Sets"
+      multiple
+      (change)="
+        homeBeMind.allMindSets =
+          group1.value +
+          ',' +
+          group2.value +
+          ',' +
+          group3.value +
+          ',' +
+          group4.value +
+          ',' +
+          group5.value
+      "
+    >
+      <mat-button-toggle class="mindsetButtons" value="Business"
+        >Business</mat-button-toggle
+      >
+      <mat-button-toggle class="mindsetButtons" value="Relationship"
+        >Relationship</mat-button-toggle
+      >
+      <mat-button-toggle class="mindsetButtons" value="Work"
+        >Work</mat-button-toggle
+      >
+      <mat-button-toggle class="mindsetButtons" value="Coins"
+        >Coins</mat-button-toggle
+      >
+    </mat-button-toggle-group>
+  </div>
+</div>

@@ -15,12 +15,13 @@ import { HomeBeMindComponent } from "../home-be-mind/home-be-mind.component";
 import { AddressComponent } from "../home-be-mind/profile/address/address.component";
 import { FirstNameComponent } from "../home-be-mind/profile/name/name.component";
 import { MindSetComponent } from "../home-be-mind/profile/mind-set/mind-set.component";
+import { ToolBarComponent } from "../tool-bar/tool-bar.component";
 
-import { ToolBarComponent } from "./tool-bar.component";
+import { FooterComponent } from "./footer.component";
 
-describe("ToolBarComponent", () => {
-  let component: ToolBarComponent;
-  let fixture: ComponentFixture<ToolBarComponent>;
+describe("FooterComponent", () => {
+  let component: FooterComponent;
+  let fixture: ComponentFixture<FooterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -40,6 +41,7 @@ describe("ToolBarComponent", () => {
         HomeBeMindComponent,
         FirstNameComponent,
         ToolBarComponent,
+        FooterComponent,
       ],
       providers: [
         FormBuilder,
@@ -52,12 +54,12 @@ describe("ToolBarComponent", () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ToolBarComponent);
+    fixture = TestBed.createComponent(FooterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it("Tool Bar componenet should be created", () => {
+  it("Footer componenet should be created", () => {
     expect(component).toBeTruthy();
   });
 });

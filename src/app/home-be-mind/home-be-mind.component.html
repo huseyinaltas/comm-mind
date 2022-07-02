@@ -1,150 +1,198 @@
-<!-- <div></div>
-<div id="allForms">
-  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-    <app-first-name *ngIf="currentPage == 0"></app-first-name>
-    <div *ngIf="nameSubmit">
-      <h2>Let's get started</h2>
-      <label for="first-name">First Name: </label>
-      <input id="first-name" type="text" formControlName="firstName" required />
-      <label for="last-name">Last Name: </label>
-      <input id="last-name" type="text" formControlName="lastName" />
-      <p></p>
-      <button
-        type="submit"
-        (click)="nameSubmit = false"
-        [disabled]="!profileForm.valid"
-      >
-        Next
-      </button>
-    </div>
-    <div *ngIf="!nameSubmit">
-      <div formGroupName="address">
-        <h2>Address</h2>
-
-        <label for="street">Street: </label>
-        <input id="street" type="text" formControlName="street" />
-
-        <label for="city">City: </label>
-        <input id="city" type="text" formControlName="city" />
-
-        <label for="state">State: </label>
-        <input id="state" type="text" formControlName="state" />
-
-        <label for="zip">Zip Code: </label>
-        <input id="zip" type="text" formControlName="zip" />
-      </div>
-
-      <div formArrayName="aliases">
-        <h2>Aliases</h2>
-        <button type="button" (click)="addAlias()">+ Add another alias</button>
-
-        <div *ngFor="let alias of aliases.controls; let i = index">
-
-          <label for="alias-{{ i }}">Alias:</label>
-          <input id="alias-{{ i }}" type="text" [formControlName]="i" />
-        </div>
-      </div>
-
-      <p>Complete the form to enable button.</p>
-      <button type="submit" [disabled]="!profileForm.valid">Submit</button>
-    </div>
-  </form>
-
-  <div *ngIf="!nameSubmit">
-    <hr />
-    <p>Form Value: {{ profileForm.value | json }}</p>
-
-    <p>Form Status: {{ profileForm.status }}</p>
-
-    <button type="button" (click)="updateProfile()">Update Profile</button>
-  </div>
-</div> -->
-
 <!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
   {{ !isLinear ? "Enable linear mode" : "Disable linear mode" }}
 </button> -->
-<mat-stepper [linear]="isLinear" #stepper>
-  <ng-template matStepperIcon="edit">
-    <mat-icon>check_circle</mat-icon>
-  </ng-template>
+<div (window:resize)="onResize($event)" style="width: 80%">
+  <div class="box">
+    <mat-stepper
+      orientation="vertical"
+      [linear]="isLinear"
+      #stepperAll
+      (selectionChange)="onStepChange($event)"
+    >
+      <mat-step>
+        <ng-template matStepLabel> Profile </ng-template>
+        <mat-stepper
+          orientation="horizontal"
+          [linear]="isLinear"
+          #stepperProfile
+        >
+          <ng-template matStepperIcon="edit">
+            <mat-icon>check_circle</mat-icon>
+          </ng-template>
 
-  <mat-step>
-    <form [formGroup]="profileForm">
-      <ng-template matStepLabel>Name</ng-template>
-      <div class="allInputs">
-        <app-first-name></app-first-name>
-        <div>
-          <button
-            (click)="nameSubmit = true"
-            [disabled]="!this.profileForm.get('name')?.valid"
-            mat-button
-            matStepperNext
+          <mat-step>
+            <form [formGroup]="appComponent.profileForm">
+              <ng-template matStepLabel>{{
+                this.innerWidth > 820 ? "Name" : ""
+              }}</ng-template>
+              <div class="allInputsProfile">
+                <app-name></app-name>
+                <div>
+                  <button
+                    id="nameNext"
+                    (click)="nameSubmit = true"
+                    [disabled]="
+                      !this.appComponent.profileForm.get('name')?.valid
+                    "
+                    mat-button
+                    matStepperNext
+                  >
+                    Next
+                  </button>
+                </div>
+              </div>
+            </form>
+          </mat-step>
+
+          <mat-step>
+            <ng-template matStepLabel>{{
+              this.innerWidth > 820 ? "Address" : ""
+            }}</ng-template>
+            <form [formGroup]="appComponent.profileForm">
+              <div class="allInputsProfile">
+                <app-address></app-address>
+                <div>
+                  <button mat-button matStepperPrevious id="profileBack">
+                    Back
+                  </button>
+                  <button
+                    id="profileNext"
+                    mat-button
+                    matStepperNext
+                    (click)="nameSubmit = true"
+                    [disabled]="
+                      !this.appComponent.profileForm.get('address')?.valid
+                    "
+                    style="right: -180px"
+                  >
+                    Next
+                  </button>
+                </div>
+              </div>
+            </form>
+          </mat-step>
+
+          <mat-step [stepControl]="appComponent.profileForm">
+            <ng-template matStepLabel>{{
+              this.innerWidth > 820 ? "Mind Sets" : ""
+            }}</ng-template>
+            <form [formGroup]="appComponent.profileForm">
+              <div class="allInputsProfile" style="margin-top: 5%">
+                <div formArrayName="mindSets">
+                  <app-mind-set></app-mind-set>
+                </div>
+                <div>
+                  <button
+                    id="mindSetBack"
+                    mat-button
+                    matStepperPrevious
+                    (click)="showMindSetDetails = false"
+                  >
+                    Back
+                  </button>
+                  <button
+                    id="mindSetNext"
+                    mat-button
+                    matStepperNext
+                    (click)="mindSetComp.madeArrayMindSets()"
+                    (click)="nameSubmit = true"
+                    style="right: -250px"
+                    (click)="showMindSetDetails = true"
+                  >
+                    Next
+                  </button>
+                </div>
+              </div>
+            </form>
+          </mat-step>
+
+          <mat-step>
+            <ng-template matStepLabel>{{
+              this.innerWidth > 820 ? "Profile Done" : ""
+            }}</ng-template>
+            <div class="allInputsProfileSubmit">
+              <h2 align="center">
+                Great
+                <strong
+                  >{{ appComponent.profileForm.value.name.firstName }}!
+                </strong>
+                Let's get in details!
+              </h2>
+              <h4 align="center">Ready?</h4>
+
+              <button
+                id="readyProfileBack"
+                mat-button
+                matStepperPrevious
+                (click)="showMindSetDetails = false"
+              >
+                Back
+              </button>
+              <button
+                id="readyProfileNext"
+                mat-button
+                matStepperNext
+                (click)="stepperAll.next()"
+                style="right: -1%; position: fixed"
+              >
+                Go Details
+              </button>
+              <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
+            </div>
+          </mat-step>
+        </mat-stepper>
+      </mat-step>
+      <mat-step *ngIf="showMindSetDetails">
+        <mat-step-header style="display: none"></mat-step-header>
+        <ng-template matStepLabel>{{
+          showMindSetDetailsHeader ? "Mind Set Details" : ""
+        }}</ng-template>
+        <mat-stepper #stepperMindDetails>
+          <ng-template matStepperIcon="edit">
+            <mat-icon>check_circle</mat-icon>
+          </ng-template>
+
+          <mat-step
+            *ngFor="
+              let mindSet of appComponent.profileForm.getRawValue().mindSets;
+              index as i;
+              first as isFirst
+            "
           >
-            Next
-          </button>
-        </div>
-      </div>
-    </form>
-  </mat-step>
-
-  <mat-step>
-    <ng-template matStepLabel>Address</ng-template>
-    <form [formGroup]="profileForm">
-      <div class="allInputs">
-        <app-address></app-address>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button
-            mat-button
-            matStepperNext
-            (click)="nameSubmit = true"
-            [disabled]="!this.profileForm.get('address')?.valid"
-            style="right: -180px"
-          >
-            Next
-          </button>
-        </div>
-      </div>
-    </form>
-  </mat-step>
-
-  <mat-step [stepControl]="profileForm">
-    <ng-template matStepLabel>Mind Set</ng-template>
-    <form [formGroup]="profileForm">
-      <div class="allInputs" style="margin-top: 3%">
-        <div formArrayName="aliases">
-          <app-mind-set></app-mind-set>
-        </div>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button
-            mat-button
-            matStepperNext
-            (click)="mindSetComp.madeArraMindSets()"
-            (click)="nameSubmit = true"
-            [disabled]="!this.profileForm.get('address')?.valid"
-            style="right: -250px"
-          >
-            Submit
-          </button>
-        </div>
-      </div>
-    </form>
-  </mat-step>
-
-  <!-- <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
-  </mat-step> -->
-</mat-stepper>
-
-<div class="below">
-  <hr />
-  <p>Form Value: {{ profileForm.value | json }}</p>
-
-  <p>Form Status: {{ profileForm.status }}</p>
+            <form
+              [formGroup]="
+                appComponent.politicsForm || appComponent.profileForm
+              "
+            >
+              <ng-template matStepLabel>{{ mindSet }}</ng-template>
+              <div class="allInputsMindSets">
+                <app-politics *ngIf="mindSet == 'Politics'"></app-politics>
+                <app-sport *ngIf="mindSet == 'Sport'"></app-sport>
+                <button mat-button matStepperPrevious *ngIf="i > 0">
+                  Back
+                </button>
+                <button
+                  mat-button
+                  matStepperNext
+                  *ngIf="i > 0"
+                  style="right: -245px"
+                >
+                  Next
+                </button>
+              </div>
+            </form>
+          </mat-step>
+        </mat-stepper>
+      </mat-step>
+    </mat-stepper>
+    <!-- <div class="below">
+    <hr />
+    <p>Profile Form Value: {{ appComponent.profileForm.value | json }}</p>
+    <p>Politics Form Value: {{ appComponent.politicsForm.value | json }}</p>
+    <p>Form Status: {{ appComponent.profileForm.status }}</p>
+  </div> -->
+  </div>
+  <!-- <app-footer></app-footer> -->
+  <!-- {{ appComponent.myStyle.width }}
+  {{ innerWidth }} -->
 </div>

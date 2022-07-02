@@ -1,4 +1,9 @@
-<app-tool-bar></app-tool-bar>
-<app-home [hidden]="router.url != '/'"></app-home>
-<app-home-be-mind [hidden]="isHideBeMind"></app-home-be-mind>
-<app-home-need-mind *ngIf="router.url == '/needMind'"></app-home-need-mind>
+<div (window:resize)="onResize($event)">
+  <div [ngStyle]="myStyle">
+    <app-tool-bar></app-tool-bar>
+    <app-home [hidden]="router.url != '/'"></app-home>
+    <app-home-be-mind [hidden]="isHideBeMind"></app-home-be-mind>
+    <app-home-need-mind *ngIf="router.url == '/needMind'"> </app-home-need-mind>
+    <app-footer class="footer"></app-footer>
+  </div>
+</div>
